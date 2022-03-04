@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './styles.module.css'
 import PropTypes from 'prop-types' // ES6
 
 // export const AudioReactRecorder = ({ text }) => {
@@ -90,7 +89,7 @@ export default class AudioReactRecorder extends React.Component {
     this.recordingLength = 0
     this.volume = null
     this.audioInput = null
-    this.sampleRate = null
+    this.sampleRate = 16000
     this.AudioContext = window.AudioContext || window.webkitAudioContext
     this.context = null
     this.analyser = null
@@ -115,8 +114,7 @@ export default class AudioReactRecorder extends React.Component {
   }
 
   setUpRecording = () => {
-    this.context = new this.AudioContext()
-    this.sampleRate = this.context.sampleRate
+    this.context = new this.AudioContext({sampleRate: 16000})
 
     // creates a gain node
     this.volume = this.context.createGain()
